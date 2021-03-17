@@ -8,9 +8,23 @@ on:
 
 jobs:
 
-  build:
+  linux-build:
 
     runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Check caches images
+      run: docker images
+
+    - name: Build the Docker image
+      run: docker build src/dotnetapp --file src/dotnetapp/Dockerfile --tag my-image-name:$(date +%s)
+
+  windows-build:
+
+    runs-on: windows-latest
 
     steps:
     - name: Checkout code
