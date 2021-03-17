@@ -13,6 +13,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Check caches images
+      run: docker images
+
     - name: Build the Docker image
       run: docker build src/dotnetapp --file src/dotnetapp/Dockerfile --tag my-image-name:$(date +%s)
