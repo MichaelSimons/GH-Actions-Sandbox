@@ -28,7 +28,7 @@ jobs:
     #       ${{ runner.os }}-buildx-
 
     - name: Check cached images
-      run: docker images
+      run: docker images --digest
 
     - name: Build the Docker image
       run: docker build src/dotnetapp --file src/dotnetapp/Dockerfile --tag my-image-name:$(date +%s)
@@ -59,8 +59,8 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Check caches images
-      run: docker images
+    - name: Check cached images
+      run: docker images --digest
 
     - name: Build the Docker image
       run: docker build src/dotnetapp --file src/dotnetapp/Dockerfile --tag my-image-name:$(date +%s)
